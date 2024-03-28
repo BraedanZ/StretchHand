@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector3 mousePos;
+    PlayerController playerController;
+    Rigidbody2D rb;
+
+    Vector3 mouseScreenPos;
+    Vector3 mouseWorldPos;
 
     Hand left;
     Hand right;
 
     void Start()
     {
-       left = GameObject.FindGameObjectWithTag("Left").GetComponent<Hand>(); 
-       right = GameObject.FindGameObjectWithTag("Right").GetComponent<Hand>(); 
+        playerController = this;
+        rb = GetComponent<Rigidbody2D>();
+
+        left = GameObject.FindGameObjectWithTag("LeftHand").GetComponent<Hand>(); 
+        right = GameObject.FindGameObjectWithTag("RightHand").GetComponent<Hand>(); 
     }
 
     void Update()
@@ -22,8 +29,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void UpdateMousePosition() {
-        mousePos = Input.mousePosition;
-        Debug.Log(mousePos);
+        mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = Camera.main.nearClipPlane = 1;
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
     }
 
     private void DetectMouseInput() {
@@ -38,6 +46,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private void LaunchHand(Hand hand) {
-
+        hand.Launch(mouseWorldPos);
     }
 }
