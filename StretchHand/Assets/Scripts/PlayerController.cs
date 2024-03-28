@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        DetectMouseInput();
+    }
+
+    private void DetectMouseInput() {
+        if (Input.GetMouseButtonDown(0)) {
+            Debug.Log("Pressed left click");
+        } else if (Input.GetMouseButtonDown(1)) {
+            Debug.Log("Pressed right click");
+        }
     }
 }
