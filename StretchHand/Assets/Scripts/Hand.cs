@@ -11,6 +11,8 @@ public class Hand : MonoBehaviour
     
     public float handSpeed;
 
+    private bool collided;
+
     void Start()
     {
         hand = this;
@@ -19,15 +21,22 @@ public class Hand : MonoBehaviour
 
     void Update()
     {
-        
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        collided = true;
     }
 
     void FixedUpdate() {
-        transform.position += handDirection * handSpeed * Time.deltaTime;
+        if (!collided) {
+            transform.position += handDirection * handSpeed * Time.deltaTime;
+        }
     }
 
     public void Launch(Vector3 mouseWorldPos) {
         mouseWorldPos.z = 0f;
         handDirection = (mouseWorldPos - transform.position).normalized;
+        collided = false;
     }
 }
