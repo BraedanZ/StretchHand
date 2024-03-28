@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1547badda4eea1145ac89c6f779146fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pullStrength: 2
 --- !u!4 &449388389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4588540667561434604, guid: 0af13d05aa12b1a4c953806fce1a5980, type: 3}
@@ -539,7 +540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d241ccb57ec92b744b27cf8dbe3e6f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handSpeed: 5
+  handSpeed: 10
+  collided: 0
+  pullStrength: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d241ccb57ec92b744b27cf8dbe3e6f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handSpeed: 5
+  handSpeed: 10
+  collided: 0
+  pullStrength: 2
 --- !u!1001 &1784318112
 PrefabInstance:
   m_ObjectHideFlags: 0

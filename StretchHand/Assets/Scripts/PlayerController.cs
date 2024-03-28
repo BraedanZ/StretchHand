@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     Hand left;
     Hand right;
 
+    public float pullStrength;
+
     void Start()
     {
         playerController = this;
@@ -26,6 +28,10 @@ public class PlayerController : MonoBehaviour
     {
         UpdateMousePosition();
         DetectMouseInput();
+    }
+
+    void FixedUpdate() {
+        DetectHands();
     }
 
     private void UpdateMousePosition() {
@@ -46,6 +52,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void LaunchHand(Hand hand) {
-        hand.Launch(mouseWorldPos);
+        hand.TriggerHand(mouseWorldPos);
+    }
+
+    private void DetectHands() {
+        if (left.collided && right.collided) {
+            rb.AddForce((left.transform.position - transform.position) * pullStrength);
+            rb.AddForce((right.transform.position - transform.position) * pullStrength);
+        }
     }
 }

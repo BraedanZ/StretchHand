@@ -7,16 +7,23 @@ public class Hand : MonoBehaviour
     Hand hand;
     Rigidbody2D rb;
 
+    PlayerController playerController;
+
     Vector3 handDirection;
     
     public float handSpeed;
 
-    private bool collided;
+    public bool collided;
+    private bool grabbing = false;
+    private bool canGrab = false;
+
+    public float pullStrength;
 
     void Start()
     {
         hand = this;
         rb = GetComponent<Rigidbody2D>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
@@ -25,18 +32,40 @@ public class Hand : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        collided = true;
+        if (canGrab) {
+            grabbing = true;
+            collided = true;
+            canGrab = false;
+        }
     }
 
     void FixedUpdate() {
-        if (!collided) {
+        Launch();
+        ReturnHand();
+    }
+
+    public void TriggerHand(Vector3 mouseWorldPos) {
+        mouseWorldPos.z = 0f;
+        collided = false;
+        if (grabbing) {
+            grabbing = false;
+            canGrab = false;
+            handDirection = (playerController.transform.position - transform.position).normalized;
+        } else {
+            canGrab = true;
+            handDirection = (mouseWorldPos - transform.position).normalized;
+        }
+    }
+
+    private void Launch() {
+        if (!collided && !grabbing) {
             transform.position += handDirection * handSpeed * Time.deltaTime;
         }
     }
 
-    public void Launch(Vector3 mouseWorldPos) {
-        mouseWorldPos.z = 0f;
-        handDirection = (mouseWorldPos - transform.position).normalized;
-        collided = false;
+    private void ReturnHand() {
+        if (!grabbing && !canGrab) {
+            rb.AddForce(handDirection * pullStrength);
+        }
     }
 }
