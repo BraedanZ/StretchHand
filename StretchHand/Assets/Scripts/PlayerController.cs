@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     PlayerController playerController;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     Vector3 mouseScreenPos;
     Vector3 mouseWorldPos;
@@ -56,9 +56,20 @@ public class PlayerController : MonoBehaviour
     }
 
     private void DetectHands() {
-        if (left.collided && right.collided) {
+        if (left.grabbing && right.grabbing) {
+            left.DestroyHinge();
+            right.DestroyHinge();
             rb.AddForce((left.transform.position - transform.position) * pullStrength);
             rb.AddForce((right.transform.position - transform.position) * pullStrength);
+        } else if (left.grabbing && !right.grabbing) {
+            left.CreateHinge();
+        } else if (!left.grabbing && right.grabbing) {
+            right.CreateHinge();
+        } else {
+            left.DestroyHinge();
+            right.DestroyHinge();
         }
+
+
     }
 }

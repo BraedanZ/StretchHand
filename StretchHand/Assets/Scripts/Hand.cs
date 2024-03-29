@@ -13,8 +13,7 @@ public class Hand : MonoBehaviour
     
     public float handSpeed;
 
-    public bool collided;
-    private bool grabbing = false;
+    public bool grabbing = false;
     private bool canGrab = false;
     private bool canThrow = true;
 
@@ -33,12 +32,12 @@ public class Hand : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionStay2D(Collision2D collision) {
         if (canGrab) {
             rb.velocity = Vector2.zero;
             grabbing = true;
-            collided = true;
             canGrab = false;
+            rb.bodyType = RigidbodyType2D.Static;
         }
     }
 
@@ -48,11 +47,11 @@ public class Hand : MonoBehaviour
 
     public void TriggerHand(Vector3 mouseWorldPos) {
         mouseWorldPos.z = 0f;
-        collided = false;
         if (grabbing) {
             grabbing = false;
             canGrab = false;
             canThrow = true;
+            rb.bodyType = RigidbodyType2D.Dynamic;
         } else {
             canGrab = true;
             handDirection = (mouseWorldPos - transform.position).normalized;
@@ -68,6 +67,19 @@ public class Hand : MonoBehaviour
         if (!grabbing && !canGrab) {
             handDirection = (playerController.transform.position - transform.position).normalized;
             rb.AddForce(handDirection * pullStrength);
+        }
+    }
+
+    public void CreateHinge() {
+        if (GetComponent<HingeJoint2D>() == null) {
+            gameObject.AddComponent<HingeJoint2D>();
+            GetComponent<HingeJoint2D>().connectedBody = playerController.rb;
+        }
+    }
+
+    public void DestroyHinge() {
+        if (GetComponent<HingeJoint2D>() != null) {
+            Destroy(GetComponent<HingeJoint2D>());
         }
     }
 }

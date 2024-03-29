@@ -299,7 +299,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -400,7 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1547badda4eea1145ac89c6f779146fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullStrength: 3
+  rb: {fileID: 0}
+  pullStrength: 4
 --- !u!4 &449388389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4588540667561434604, guid: 0af13d05aa12b1a4c953806fce1a5980, type: 3}
@@ -504,14 +505,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &480020664
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -541,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handSpeed: 10
-  collided: 0
+  grabbing: 0
   throwSpeed: 500
   pullStrength: 4
 --- !u!1 &519420028
@@ -809,14 +810,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1567989027
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -846,7 +847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handSpeed: 10
-  collided: 0
+  grabbing: 0
   throwSpeed: 500
   pullStrength: 4
 --- !u!1001 &1784318112
@@ -870,11 +871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4588540667561434604, guid: 0af13d05aa12b1a4c953806fce1a5980, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.4797
+      value: 5.32
       objectReference: {fileID: 0}
     - target: {fileID: 4588540667561434604, guid: 0af13d05aa12b1a4c953806fce1a5980, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2514
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4588540667561434604, guid: 0af13d05aa12b1a4c953806fce1a5980, type: 3}
       propertyPath: m_LocalPosition.z
