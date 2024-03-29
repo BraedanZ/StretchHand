@@ -16,7 +16,9 @@ public class Hand : MonoBehaviour
     public bool collided;
     private bool grabbing = false;
     private bool canGrab = false;
+    private bool canThrow = true;
 
+    public float throwSpeed;
     public float pullStrength;
 
     void Start()
@@ -33,6 +35,7 @@ public class Hand : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (canGrab) {
+            rb.velocity = Vector2.zero;
             grabbing = true;
             collided = true;
             canGrab = false;
@@ -40,7 +43,6 @@ public class Hand : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Launch();
         ReturnHand();
     }
 
@@ -50,21 +52,21 @@ public class Hand : MonoBehaviour
         if (grabbing) {
             grabbing = false;
             canGrab = false;
-            handDirection = (playerController.transform.position - transform.position).normalized;
+            canThrow = true;
         } else {
             canGrab = true;
             handDirection = (mouseWorldPos - transform.position).normalized;
-        }
-    }
-
-    private void Launch() {
-        if (!collided && !grabbing) {
-            transform.position += handDirection * handSpeed * Time.deltaTime;
+            if (canThrow) {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(handDirection * throwSpeed);
+                canThrow = false;
+            }
         }
     }
 
     private void ReturnHand() {
         if (!grabbing && !canGrab) {
+            handDirection = (playerController.transform.position - transform.position).normalized;
             rb.AddForce(handDirection * pullStrength);
         }
     }
