@@ -11,7 +11,14 @@ public class RangeDetector : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D collider) {
-        collider.gameObject.transform.position = playerController.transform.position;
-        Debug.Log("it should have worked");
+        Debug.Log("logged");
+        // collider.gameObject.transform.position = playerController.transform.position;
+        if (collider.GetComponent<Hand>() != null) {
+            if (collider.GetComponent<Hand>().grabbing == false) {
+                collider.GetComponent<Hand>().grabbing = true;
+                collider.GetComponent<Hand>().rb.velocity = Vector2.zero;
+                collider.GetComponent<Hand>().TriggerHand(playerController.mouseWorldPos);
+            }
+        }
     }
 }

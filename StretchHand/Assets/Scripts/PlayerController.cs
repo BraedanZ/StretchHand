@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
 
     Vector3 mouseScreenPos;
-    Vector3 mouseWorldPos;
+    public Vector3 mouseWorldPos;
 
     Hand left;
     Hand right;

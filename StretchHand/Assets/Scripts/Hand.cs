@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     Hand hand;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     PlayerController playerController;
 
