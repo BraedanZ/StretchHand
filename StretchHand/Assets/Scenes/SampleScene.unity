@@ -270,7 +270,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1773451255816171463, guid: 0af13d05aa12b1a4c953806fce1a5980, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4588540667561434604, guid: 0af13d05aa12b1a4c953806fce1a5980, type: 3}
       propertyPath: m_RootOrder
@@ -734,6 +734,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   handSpeed: 10
   grabbing: 0
+  canThrow: 1
   throwSpeed: 500
   pullStrength: 15
 --- !u!58 &480020666
@@ -1203,6 +1204,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   handSpeed: 10
   grabbing: 0
+  canThrow: 1
   throwSpeed: 500
   pullStrength: 15
 --- !u!58 &1567989029
@@ -1231,7 +1233,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1662248556}
   - component: {fileID: 1662248557}
-  m_Layer: 6
+  - component: {fileID: 1662248558}
+  m_Layer: 0
   m_Name: ReturnedDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1268,6 +1271,18 @@ CircleCollider2D:
   m_Offset: {x: -0.005000237, y: 0}
   serializedVersion: 2
   m_Radius: 5.381016
+--- !u!114 &1662248558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662248555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f5ae6786f36504ab9cf6ddb50f7cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1769965345
 PrefabInstance:
   m_ObjectHideFlags: 0

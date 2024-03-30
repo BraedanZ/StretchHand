@@ -20,6 +20,7 @@ public class ReturnDetector : MonoBehaviour
         Debug.Log("logged");
         if (collider.GetComponent<Hand>() != null) {
             collider.GetComponent<Hand>().rb.velocity = Vector2.zero;
+            collider.GetComponent<Hand>().canThrow = true;
         }
     }
 }

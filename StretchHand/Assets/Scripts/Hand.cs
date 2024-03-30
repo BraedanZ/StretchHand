@@ -15,7 +15,7 @@ public class Hand : MonoBehaviour
 
     public bool grabbing = false;
     private bool canGrab = false;
-    private bool canThrow = true;
+    public bool canThrow = true;
 
     public float throwSpeed;
     public float pullStrength;
@@ -50,12 +50,14 @@ public class Hand : MonoBehaviour
         if (grabbing) {
             grabbing = false;
             canGrab = false;
-            canThrow = true;
+            // canThrow = true;
             rb.bodyType = RigidbodyType2D.Dynamic;
         } else {
-            canGrab = true;
-            handDirection = (mouseWorldPos - transform.position).normalized;
+            // canGrab = true;
+            // handDirection = (mouseWorldPos - transform.position).normalized;
             if (canThrow) {
+                canGrab = true;
+                handDirection = (mouseWorldPos - transform.position).normalized;
                 rb.velocity = Vector2.zero;
                 rb.AddForce(handDirection * throwSpeed);
                 canThrow = false;
