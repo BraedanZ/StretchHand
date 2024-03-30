@@ -11,8 +11,6 @@ public class RangeDetector : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D collider) {
-        Debug.Log("logged");
-        // collider.gameObject.transform.position = playerController.transform.position;
         if (collider.GetComponent<Hand>() != null) {
             if (collider.GetComponent<Hand>().grabbing == false) {
                 collider.GetComponent<Hand>().grabbing = true;
