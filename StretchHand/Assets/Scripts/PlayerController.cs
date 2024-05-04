@@ -57,17 +57,30 @@ public class PlayerController : MonoBehaviour
 
     private void DetectHands() {
         if (left.grabbing && right.grabbing) {
-            left.DestroyHinge();
-            right.DestroyHinge();
+            // left.DestroyHinge();
+            // right.DestroyHinge();
+
+            left.DestroySpring();
+            right.DestroySpring();
+
             rb.AddForce((left.transform.position - transform.position) * pullStrength);
             rb.AddForce((right.transform.position - transform.position) * pullStrength);
         } else if (left.grabbing && !right.grabbing) {
-            left.CreateHinge();
+            // left.CreateHinge();
+
+            left.CreateSpring();
+
         } else if (!left.grabbing && right.grabbing) {
-            right.CreateHinge();
+            // right.CreateHinge();
+
+            right.CreateSpring();
+
         } else {
-            left.DestroyHinge();
-            right.DestroyHinge();
+            // left.DestroyHinge();
+            // right.DestroyHinge();
+
+            left.DestroySpring();
+            right.DestroySpring();
         }
 
 
