@@ -84,4 +84,17 @@ public class Hand : MonoBehaviour
             Destroy(GetComponent<HingeJoint2D>());
         }
     }
+
+    public void CreateSpring() {
+        if (GetComponent<SpringJoint2D>() == null) {
+            gameObject.AddComponent<SpringJoint2D>();
+            GetComponent<SpringJoint2D>().connectedBody = playerController.rb;
+        }
+    }
+
+    public void DestroySpring() {
+        if (GetComponent<SpringJoint2D>() != null) {
+            Destroy(GetComponent<SpringJoint2D>());
+        }
+    }
 }
