@@ -20,6 +20,9 @@ public class Hand : MonoBehaviour
     public float throwSpeed;
     public float pullStrength;
 
+    public float damping;
+    public float freq;
+
     void Start()
     {
         hand = this;
@@ -89,6 +92,8 @@ public class Hand : MonoBehaviour
         if (GetComponent<SpringJoint2D>() == null) {
             gameObject.AddComponent<SpringJoint2D>();
             GetComponent<SpringJoint2D>().connectedBody = playerController.rb;
+            GetComponent<SpringJoint2D>().dampingRatio = damping;
+            GetComponent<SpringJoint2D>().frequency = freq;
         }
     }
 
