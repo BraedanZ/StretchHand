@@ -102,4 +102,18 @@ public class Hand : MonoBehaviour
             Destroy(GetComponent<SpringJoint2D>());
         }
     }
+
+    public void CreateDistanceJoint() {
+        if (GetComponent<DistanceJoint2D>() == null) {
+            gameObject.AddComponent<DistanceJoint2D>();
+            GetComponent<DistanceJoint2D>().connectedBody = playerController.rb;
+            GetComponent<DistanceJoint2D>().maxDistanceOnly = true;
+        }
+    }
+
+    public void DestroyDistanceJoint() {
+        if (GetComponent<DistanceJoint2D>() != null) {
+            Destroy(GetComponent<DistanceJoint2D>());
+        }
+    }
 }
