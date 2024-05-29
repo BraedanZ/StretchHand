@@ -60,20 +60,27 @@ public class PlayerController : MonoBehaviour
             // left.DestroyHinge();
             // right.DestroyHinge();
 
-            left.DestroySpring();
-            right.DestroySpring();
+            // left.DestroySpring();
+            // right.DestroySpring();
+
+            left.DestroyDistanceJoint();
+            right.DestroyDistanceJoint();
 
             rb.AddForce((left.transform.position - transform.position) * pullStrength);
             rb.AddForce((right.transform.position - transform.position) * pullStrength);
         } else if (left.grabbing && !right.grabbing) {
             // left.CreateHinge();
 
-            left.CreateSpring();
+            // left.CreateSpring();
+
+            left.CreateDistanceJoint();
 
         } else if (!left.grabbing && right.grabbing) {
             // right.CreateHinge();
 
-            right.CreateSpring();
+            // right.CreateSpring();
+
+            right.CreateDistanceJoint();
 
         } else {
             // left.DestroyHinge();
