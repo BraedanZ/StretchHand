@@ -75,34 +75,6 @@ public class Hand : MonoBehaviour
         }
     }
 
-    public void CreateHinge() {
-        if (GetComponent<HingeJoint2D>() == null) {
-            gameObject.AddComponent<HingeJoint2D>();
-            GetComponent<HingeJoint2D>().connectedBody = playerController.rb;
-        }
-    }
-
-    public void DestroyHinge() {
-        if (GetComponent<HingeJoint2D>() != null) {
-            Destroy(GetComponent<HingeJoint2D>());
-        }
-    }
-
-    public void CreateSpring() {
-        if (GetComponent<SpringJoint2D>() == null) {
-            gameObject.AddComponent<SpringJoint2D>();
-            GetComponent<SpringJoint2D>().connectedBody = playerController.rb;
-            GetComponent<SpringJoint2D>().dampingRatio = damping;
-            GetComponent<SpringJoint2D>().frequency = freq;
-        }
-    }
-
-    public void DestroySpring() {
-        if (GetComponent<SpringJoint2D>() != null) {
-            Destroy(GetComponent<SpringJoint2D>());
-        }
-    }
-
     public void CreateDistanceJoint() {
         if (GetComponent<DistanceJoint2D>() == null) {
             gameObject.AddComponent<DistanceJoint2D>();
