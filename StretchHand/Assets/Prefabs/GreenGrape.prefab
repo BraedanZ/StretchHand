@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1422159732811397543}
   - component: {fileID: 7694203255653956383}
   - component: {fileID: 2096022729995454677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GreenGrape
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
